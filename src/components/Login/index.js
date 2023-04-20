@@ -1,53 +1,46 @@
-import { Button, Form, Input } from "antd";
-import { useAuth } from "@/contexts";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { FormProvider, useForm } from "react-hook-form";
 
-const validateMessages = {
-  required: "Please input your ${label}",
-  types: {
-    email: "Email is not a valid!",
-  },
-};
+import { Button } from "@/components/base";
+import { TextInput } from "@/components/form";
+import { useAuth } from "@/contexts";
+import {
+  FORM_LOGIN,
+  loginFormSchema,
+  loginInitialValues,
+} from "@/validations/loginSchema";
 
 const Login = () => {
   const { doLogin } = useAuth();
+  const methods = useForm({
+    resolver: yupResolver(loginFormSchema()),
+    defaultValues: loginInitialValues,
+  });
+
+  const handleLogin = (values) => {
+    doLogin(values);
+  };
 
   return (
-    <Form
-      onFinish={doLogin}
-      layout="inline"
-      validateMessages={validateMessages}
-    >
-      <Form.Item
-        name="email"
-        placeholder="Email"
-        rules={[
-          {
-            required: true,
-            type: "email",
-          },
-        ]}
+    <FormProvider {...methods}>
+      <form
+        onSubmit={methods.handleSubmit(handleLogin)}
+        className="md:flex items-start"
       >
-        <Input />
-      </Form.Item>
-
-      <Form.Item
-        placeholder="Password"
-        name="password"
-        rules={[
-          {
-            required: true,
-          },
-        ]}
-      >
-        <Input.Password />
-      </Form.Item>
-
-      <Form.Item>
-        <Button type="primary" htmlType="submit" className="bg-blue-500 mt-3 sm:mt-0">
+        <TextInput required name={FORM_LOGIN.EMAIL} placeholder="Email" />
+        <TextInput
+          required
+          type="password"
+          name={FORM_LOGIN.PASSWORD}
+          placeholder="Password"
+          className="md:mx-4"
+        />
+        <Button type="submit" className="mt-2">
           Login / Register
         </Button>
-      </Form.Item>
-    </Form>
+      </form>
+    </FormProvider>
   );
 };
+
 export default Login;

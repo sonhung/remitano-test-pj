@@ -9,7 +9,7 @@ const AppsLayout = ({ children }) => {
         <meta name="description" content="Funny Movies" />
       </Head>
       <Header />
-      <main>{children}</main>
+      <main className="pb-20">{children}</main>
     </div>
   );
 };

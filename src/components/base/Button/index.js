@@ -66,7 +66,7 @@ const Button = forwardRef(
           !disabled && {
             "bg-sky-500 text-white": variant === "primary",
             "bg-dark-brown text-primary": variant === "secondary",
-            "bg-transparent text-primary border border-sky-500":
+            "bg-transparent text-main border border-sky-500":
               variant === "outline",
           },
           {

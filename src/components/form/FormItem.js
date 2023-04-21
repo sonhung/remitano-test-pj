@@ -26,7 +26,7 @@ const FormItem = ({
       render={({ field, formState }) => {
         const errorMessage = get(formState.errors, `${name}.message`);
         return (
-          <div className={cn(className, "mt-2")}>
+          <div className={className}>
             {label && (
               <Label.Root
                 className="font-bold leading-[13px]"

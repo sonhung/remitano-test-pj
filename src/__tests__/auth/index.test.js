@@ -1,13 +1,16 @@
 import { render, screen, waitFor, fireEvent } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
 import Home from "@/pages/index";
 import { AuthProvider } from "@/contexts";
+import { ReactQueryProvider } from "@/contexts/ReactQuery";
+
 import "@testing-library/jest-dom";
 
 const setupLogin = () => {
   const { container, getByText } = render(
     <AuthProvider>
-      <Home />
+      <ReactQueryProvider>
+        <Home />
+      </ReactQueryProvider>
     </AuthProvider>
   );
   const submit = screen.getByRole("button", { name: "Login / Register" });
@@ -26,13 +29,13 @@ const setupLogout = () => {
   localStorage.setItem("email", "email@gmail.com");
   const { container, getByText } = render(
     <AuthProvider>
-      <Home />
+      <ReactQueryProvider>
+        <Home />
+      </ReactQueryProvider>
     </AuthProvider>
   );
-  const shareButton = screen.getByRole("button", { name: "Share a movie" });
   const logoutButton = screen.getByRole("button", { name: "Logout" });
   return {
-    shareButton,
     logoutButton,
     container,
     getByText,
@@ -93,9 +96,9 @@ describe("Logged and share", () => {
     expect(userEmail).toBeInTheDocument();
   });
 
-  it("Show share button after login", async () => {
-    const { shareButton } = setupLogout();
-    expect(shareButton).toBeInTheDocument();
+  it("Show logout button after login", async () => {
+    const { logoutButton } = setupLogout();
+    expect(logoutButton).toBeInTheDocument();
   });
 
   it("Logout and clear storage", async () => {

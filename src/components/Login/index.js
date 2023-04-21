@@ -33,9 +33,9 @@ const Login = () => {
           type="password"
           name={FORM_LOGIN.PASSWORD}
           placeholder="Password"
-          className="md:mx-4"
+          className="md:mx-4 mt-2 md:mt-0"
         />
-        <Button type="submit" className="mt-2">
+        <Button type="submit" className="mt-2 md:mt-0">
           Login / Register
         </Button>
       </form>

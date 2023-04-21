@@ -3,7 +3,7 @@ import Layout from "@/layout/Layout";
 
 export default function Share() {
   return (
-    <Layout>
+    <Layout isPrivate>
       <SharePage />
     </Layout>
   );

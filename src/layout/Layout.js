@@ -1,7 +1,19 @@
 import Head from "next/head";
 import Header from "./Header";
+import { useAuth } from "@/contexts";
+import { useEffect } from "react";
+import { ROUTER } from "@/constants";
 
-const AppsLayout = ({ children }) => {
+const AppsLayout = ({ children, isPrivate = false }) => {
+  const { isLogged } = useAuth();
+
+  useEffect(() => {
+    if (isPrivate) {
+      const email = localStorage.getItem("email");
+      if (!email && !isLogged) window.location = ROUTER.NO_PERMISSION;
+    }
+  }, [isPrivate, isLogged]);
+
   return (
     <div>
       <Head>

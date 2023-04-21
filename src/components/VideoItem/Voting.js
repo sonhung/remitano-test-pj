@@ -17,11 +17,19 @@ const Voting = ({ vote, videoId }) => {
   if (!vote)
     return (
       <div className="flex">
-        <div className="mr-4 cursor-pointer" onClick={() => doVoting(true)}>
+        <div
+          className="mr-4 cursor-pointer"
+          data-testid="vote-like"
+          onClick={() => doVoting(true)}
+        >
           <AiOutlineLike size={25} />
         </div>
-        <div className="cursor-pointer">
-          <AiOutlineDislike size={25} onClick={() => doVoting(false)} />
+        <div
+          className="cursor-pointer"
+          data-testid="vote-dislike"
+          onClick={() => doVoting(false)}
+        >
+          <AiOutlineDislike size={25} />
         </div>
       </div>
     );

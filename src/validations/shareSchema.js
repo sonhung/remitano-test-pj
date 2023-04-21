@@ -1,4 +1,5 @@
 import * as Yup from "yup";
+import { REGEX_URL } from "@/constants";
 
 const FORM_SAHRE = {
   LINK: "link",
@@ -12,7 +13,9 @@ const shareInitialValues = {
 
 const shareFormSchema = () =>
   Yup.object().shape({
-    [FORM_SAHRE.LINK]: Yup.string().required("Please input youtube link"),
+    [FORM_SAHRE.LINK]: Yup.string()
+      .required("Please input youtube link")
+      .matches(REGEX_URL, "Youtube url invalid"),
   });
 
 export { shareFormSchema, shareInitialValues, FORM_SAHRE };

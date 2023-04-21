@@ -4,6 +4,8 @@ export const API_ROOT = "";
 export const TIMEOUT = 30000;
 export const DEBUG = process.env.NODE_ENV !== "production";
 export const VIDEO_INFO_URL = "https://www.youtube.com/oembed?url=:link";
+export const REGEX_URL =
+  /(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g;
 
 export const VOTE = {
   LIKE: "like",

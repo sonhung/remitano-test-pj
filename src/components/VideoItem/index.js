@@ -32,18 +32,20 @@ const VideoItem = ({
         </div>
         <div className="flex justify-between">
           <div className="text-sm">
-            Share by:{" "}
-            <span className="font-bold">{sharedBy || data?.author_name}</span>
+            Share by:
+            <span className="font-bold ml-2">
+              {sharedBy || data?.author_name}
+            </span>
           </div>
           <Voting vote={vote} videoId={id} />
         </div>
         <div className="flex text-sm">
           <div className="flex items-center">
-            {like}
+            <span data-testid="num-like">{like}</span>
             <AiOutlineLike size={16} />
           </div>
           <div className="flex items-center ml-2">
-            {dislike}
+            <span data-testid="num-dislike">{dislike}</span>
             <AiOutlineDislike size={16} />
           </div>
         </div>
